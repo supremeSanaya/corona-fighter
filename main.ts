@@ -18,7 +18,7 @@ function setupCorona () {
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
     corona.setPosition(0, Math.randomRange(3, 110))
-    corona.setVelocity(70, 5)
+    corona.setVelocity(70, 10)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     game.over(false, effects.dissolve)
@@ -43,7 +43,8 @@ let cell = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
 controller.moveSprite(cell, 100, 100)
+cell.setFlag(SpriteFlag.StayInScreen, true)
 forever(function () {
-    pause(500)
+    pause(2000)
     setupCorona()
 })
