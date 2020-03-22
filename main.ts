@@ -44,7 +44,12 @@ let cell = sprites.create(img`
 `, SpriteKind.Player)
 controller.moveSprite(cell, 100, 100)
 cell.setFlag(SpriteFlag.StayInScreen, true)
+info.setScore(0)
+let firstCorInterval = 2000
+game.onUpdateInterval(firstCorInterval, function () {
+    info.changeScoreBy(1)
+})
 forever(function () {
-    pause(2000)
+    pause(firstCorInterval)
     setupCorona()
 })
