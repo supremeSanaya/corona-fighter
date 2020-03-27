@@ -1,25 +1,3 @@
-function setupBadCorona () {
-    BadCorona = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . a . . . . . 
-. . . . . . . . . a . . . . a . 
-. . . . . . . . a . . . . a . . 
-. . . c c c b a b b b b b . a . 
-. . . a c c b b b b b b b a . . 
-. . a c c c c b b b a b b b b a 
-. a . c c c c b b b b a b b b a 
-. a . c c c c c b b b b a b b a 
-. . . c c a c c c c b b a b a . 
-. . . c c c a a c c b b b b b . 
-. . . . c c c c a c c c b b b . 
-. . . . a . c c c c c c b b b . 
-. . . a . . . . a c c c c c a . 
-. . a . . . . . . a . . . . . a 
-. . . a . . . . a . . . . . a . 
-`, SpriteKind.Enemy)
-    BadCorona.setPosition(Math.randomRange(3, 150), 0)
-    BadCorona.setVelocity(30, 100)
-}
 function setupCorona () {
     corona = sprites.create(img`
 . . . . . . . . . . . . . . . . 
@@ -42,11 +20,33 @@ function setupCorona () {
     corona.setPosition(0, Math.randomRange(3, 110))
     corona.setVelocity(70, 10)
 }
+function setupBadCorona () {
+    BadCorona = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . a . . . . . 
+. . . . . . . . . a . . . . a . 
+. . . . . . . . a . . . . a . . 
+. . . c c c b a b b b b b . a . 
+. . . a c c b b b b b b b a . . 
+. . a c c c c b b b a b b b b a 
+. a . c c c c b b b b a b b b a 
+. a . c c c c c b b b b a b b a 
+. . . c c a c c c c b b a b a . 
+. . . c c c a a c c b b b b b . 
+. . . . c c c c a c c c b b b . 
+. . . . a . c c c c c c b b b . 
+. . . a . . . . a c c c c c a . 
+. . a . . . . . . a . . . . . a 
+. . . a . . . . a . . . . . a . 
+`, SpriteKind.Enemy)
+    BadCorona.setPosition(Math.randomRange(3, 150), 0)
+    BadCorona.setVelocity(30, 100)
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     game.over(false, effects.dissolve)
 })
-let corona: Sprite = null
 let BadCorona: Sprite = null
+let corona: Sprite = null
 let cell = sprites.create(img`
 . . . . c c c c c . c c c . 
 . . . c c a a a a c c c c c 
@@ -68,6 +68,7 @@ let cell = sprites.create(img`
 controller.moveSprite(cell, 100, 100)
 cell.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
+info.setLife(6)
 let firstCorInterval = 2000
 let secondCorInterval = 4000
 game.onUpdateInterval(firstCorInterval, function () {
